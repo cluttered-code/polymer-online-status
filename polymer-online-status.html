@@ -14,8 +14,12 @@ Online status icon
   <template>
     <style>
       :host {
-        cursor: default;
+        cursor: none;
         display: block;
+      }
+
+      paper-icon-button:hover {
+        cursor: default;
       }
 
       [error] {
@@ -26,7 +30,7 @@ Online status icon
     <!-- Online -->
     <template is="dom-if" if="[[online]]" restamp="true">
       <div>
-        <paper-icon-button icon="cloud"></paper-icon-button>
+        <paper-icon-button icon="cloud" noink="true"></paper-icon-button>
         <paper-tooltip>Online</paper-tooltip>
       </div>
     </template>
@@ -34,7 +38,7 @@ Online status icon
     <!-- Offline -->
     <template is="dom-if" if="[[!online]]" restamp="true">
       <div>
-        <paper-icon-button icon="cloud-off" error></paper-icon-button>
+        <paper-icon-button icon="cloud-off" noink="true" error></paper-icon-button>
         <paper-tooltip>Offline</paper-tooltip>
       </div>
     </template>
