@@ -1,0 +1,59 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../app-storage/app-network-status-behavior.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../paper-tooltip/paper-tooltip.html">
+<!--
+`polymer-online-status`
+Online status icon
+
+@demo demo/index.html
+-->
+
+<dom-module id="polymer-online-status">
+  <template>
+    <style>
+      :host {
+        cursor: default;
+        display: block;
+      }
+
+      [error] {
+        color: #db5656;
+      }
+    </style>
+
+    <!-- Online -->
+    <template is="dom-if" if="[[online]]" restamp="true">
+      <div>
+        <paper-icon-button icon="cloud"></paper-icon-button>
+        <paper-tooltip>Online</paper-tooltip>
+      </div>
+    </template>
+
+    <!-- Offline -->
+    <template is="dom-if" if="[[!online]]" restamp="true">
+      <div>
+        <paper-icon-button icon="cloud-off" error></paper-icon-button>
+        <paper-tooltip>Offline</paper-tooltip>
+      </div>
+    </template>
+
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+
+        is: 'polymer-online-status',
+
+        /** @polymerBehavior */
+        behaviors: [
+          Polymer.AppNetworkStatusBehavior
+        ]
+      });
+    })();
+  </script>
+</dom-module>

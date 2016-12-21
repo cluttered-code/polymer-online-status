@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>polymer-online-status test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../polymer-online-status.html">
+  </head>
+  <body>
+    <test-fixture id="basic">
+      <template>
+        <polymer-online-status></polymer-online-status>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('polymer-online-status', function() {
+        test('instantiating the element works', function() {
+          var element = fixture('basic');
+          assert.equal(element.is, 'polymer-online-status');
+        });
+      });
+    </script>
+  </body>
+</html>
