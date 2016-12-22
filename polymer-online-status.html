@@ -7,6 +7,14 @@
 `polymer-online-status`
 Online status icon
 
+### Styling
+
+The following custom properties and mixins are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--offline-status-color` | The color of the icon when offline | `#db5656`
+
 @demo demo/index.html
 -->
 
@@ -22,26 +30,23 @@ Online status icon
         cursor: default;
       }
 
-      [error] {
-        color: #db5656;
+      [offline] {
+        color: var(--offline-status-color, #db5656);
       }
     </style>
 
-    <!-- Online -->
-    <template is="dom-if" if="[[online]]" restamp="true">
-      <div>
+    <div>
+      <!-- Online -->
+      <template is="dom-if" if="[[online]]" restamp="true">
         <paper-icon-button icon="cloud" noink="true"></paper-icon-button>
         <paper-tooltip>Online</paper-tooltip>
-      </div>
-    </template>
-
-    <!-- Offline -->
-    <template is="dom-if" if="[[!online]]" restamp="true">
-      <div>
-        <paper-icon-button icon="cloud-off" noink="true" error></paper-icon-button>
+      </template>
+      <!-- Offline -->
+      <template is="dom-if" if="[[!online]]" restamp="true">
+        <paper-icon-button icon="cloud-off" noink="true" offline></paper-icon-button>
         <paper-tooltip>Offline</paper-tooltip>
-      </div>
-    </template>
+      </template>
+    </div>
 
   </template>
 
@@ -52,6 +57,17 @@ Online status icon
       Polymer({
 
         is: 'polymer-online-status',
+
+        properties: {
+          online: {
+            type: Boolean,
+            readOnly: true,
+            notify: true,
+            value: function() {
+              return window.navigator.onLine;
+            }
+          }
+        },
 
         /** @polymerBehavior */
         behaviors: [
